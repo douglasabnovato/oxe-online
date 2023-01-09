@@ -1,0 +1,11 @@
+.app-bar {
+    background-color: #F4552B;    
+} 
+
+.card-textfield{
+    z-index: 10;
+}
+
+.card-image{
+    z-index: 1;
+}
