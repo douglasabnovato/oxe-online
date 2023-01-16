@@ -59,6 +59,7 @@ Projeto de site conforme o [figma](https://www.figma.com/files/team/117182962623
 
 - [x] ajustar tamanhos e dimensões dos ícones: investor, icon
 - [x] ajustar cor do background do componente Chip
+- [ ] responsive 
 
 ### Componentes 
 
