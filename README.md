@@ -6,6 +6,13 @@
   <img alt="oxe-online" title="#oxe-online" src="./.github/tela-5.jpg" >
 </p>  
 
+### Em produção
+
+- URL: https://douglasabnovato.github.io/oxe-online/
+- Hospedagem: GitHub Pages (gratuito), publicado pelo GitHub Actions a cada push na `main`
+- Projeto de estudo: as empresas são reais, mas as vagas são ilustrativas
+- Passo a passo: [docs/DEPLOY.md](docs/DEPLOY.md)
+
 ### Layout 
 
 Projeto de site conforme o [figma](https://www.figma.com/files/team/1171829626239227287/Jamboo?fuid=850142401757702475).
@@ -59,11 +66,28 @@ Projeto de site conforme o [figma](https://www.figma.com/files/team/117182962623
 
 - [x] ajustar tamanhos e dimensões dos ícones: investor, icon
 - [x] ajustar cor do background do componente Chip
-- [ ] responsive 
+- [x] responsive (v1.0) 
 
 ### Componentes 
 
 - [ ] botão design daily usando styled
+
+### Versão 1.0 (revisão de qualidade)
+
+- [x] Busca por texto e seleção de empresa agora filtram as vagas (antes eram só visuais)
+- [x] Lista gerada a partir de `src/data/jobs.ts` (antes 3 blocos copiados à mão)
+- [x] Salvar vaga (fica guardada no navegador) e "Candidatar-se" abre o site da empresa
+- [x] Layout responsivo, textos das ações em português, WCAG AA (axe-core sem violações)
+- [x] Vite 8 + MUI 7 + TypeScript 5; testes com Vitest
+
+```bash
+npm install
+npm run dev     # http://localhost:5173
+npm test
+npm run build   # build/ (publicado no GitHub Pages pelo workflow)
+```
+
+Detalhes em [docs/ANALISE.md](docs/ANALISE.md), [docs/ARQUITETURA.md](docs/ARQUITETURA.md) e [docs/PLANO-DE-ACAO.md](docs/PLANO-DE-ACAO.md).
 
 ### Telas 
 

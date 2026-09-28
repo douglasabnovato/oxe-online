@@ -1,141 +1,53 @@
-import * as React from 'react';
-import Box from '@mui/material/Box';
-import Paper from '@mui/material/Paper';
-import TextField from '@mui/material/TextField';
-import MenuItem from '@mui/material/MenuItem';
+/* Banner com busca por texto e seleção de empresa (antes os campos não filtravam nada) */
+import Box from "@mui/material/Box";
+import Paper from "@mui/material/Paper";
+import TextField from "@mui/material/TextField";
+import MenuItem from "@mui/material/MenuItem";
+import InputAdornment from "@mui/material/InputAdornment";
+import SearchIcon from "@mui/icons-material/Search";
+import BannerWallpaper from "./static/images/banner-wallpaper.jpg";
+import type { Company } from "../data/jobs";
 
-import SearchIcon from '@mui/icons-material/Search';
-import IconButton from '@mui/material/IconButton';
+type Props = {
+  query: string;
+  onQuery: (v: string) => void;
+  companyId: string;
+  onCompany: (v: string) => void;
+  companies: Company[];
+};
 
-import BannerWallpaper from './static/images/banner-wallpaper.jpg';
-
-const currencies = [
-    {
-        value: 'MET',
-        label: 'Meta',
-    },
-    {
-        value: 'AMA',
-        label: 'Amazon',
-    },
-    {
-        value: 'JAA',
-        label: 'Jamboo',
-    },
-    {
-        value: 'GOO',
-        label: 'Google',
-    },
-    {
-        value: 'APP',
-        label: 'Apple',
-    },
-    {
-        value: 'MIC',
-        label: 'Microsoft',
-    },
-    {
-        value: 'TWI',
-        label: 'Twitter',
-    },
-];
-
-export default function Banner() {
-    const [currency, setCurrency] = React.useState('EUR');
-
-    const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-        setCurrency(event.target.value);
-    };
-
-    return (
-        <>
-            <Box
-                sx={{
-                    marginTop: 5,
-                }}
-            >
-                <Paper sx={{ backgroundImage: `url(${BannerWallpaper})`, height: 147, width: "100%" }} />
-            </Box>
-            <Box
-                sx={{
-                    width: "80vw",
-                    margin: "0 auto",
-                    marginTop: -10,
-                }}
-            >
-                <Paper
-                    sx={{
-                        px: 25,
-                        py: 5
-                    }}>
-                    <TextField
-                        helperText=" "
-                        id="search-text-aligned"
-                        label="Procure por uma vaga de emprego"
-                        sx={{
-                            width: "30vw",
-                            "& .MuiInputLabel-root": { color: '#F4552B' },
-                            "& .MuiInputLabel-root.Mui-focused": { color: '#F4552B' },
-                            "& .MuiOutlinedInput-root": {
-                                "& > fieldset": { borderColor: "#F4552B" },
-                            },
-                            "& .MuiOutlinedInput-root.Mui-focused": {
-                                "& > fieldset": { borderColor: "#F4552B" },
-                            },
-                            "& .MuiOutlinedInput-root:hover": {
-                                "& > fieldset": { borderColor: "#F4552B" },
-                            },
-                        }}
-                        InputProps={{
-                            endAdornment: (
-                                <IconButton
-                                    type="button"
-                                    aria-label="search"
-                                    sx={{
-                                        p: '10px',
-                                        color: '#F4552B',
-                                    }}>
-                                    <SearchIcon />
-                                </IconButton>
-                            ),
-                        }}
-                    />
-                    <TextField
-                        helperText=" "
-                        id="select-text-aligned"
-                        label="Selecione uma empresa"
-                        value={currency}
-                        onChange={handleChange}
-                        sx={{
-                            width: "15vw",
-                            marginLeft: 1,
-                            "& .MuiInputLabel-root": { color: '#F4552B' },
-                            "& .MuiInputLabel-root.Mui-focused": { color: '#F4552B' },
-                            "& .MuiOutlinedInput-root": {
-                                "& > fieldset": { borderColor: "#F4552B" },
-                            },
-                            "& .MuiOutlinedInput-root.Mui-focused": {
-                                "& > fieldset": { borderColor: "#F4552B" },
-                            },
-                            "& .MuiOutlinedInput-root:hover": {
-                                "& > fieldset": { borderColor: "#F4552B" },
-                            },
-                        }}
-                        select
-                    >
-                        {currencies.map((option) => (
-                            <MenuItem
-                                key={option.value}
-                                value={option.value}
-                                sx={{
-                                    color: '#F4552B',
-                                }}>
-                                {option.label}
-                            </MenuItem>
-                        ))}
-                    </TextField>
-                </Paper>
-            </Box>
-        </>
-    );
+export default function Banner({ query, onQuery, companyId, onCompany, companies }: Props) {
+  return (
+    <>
+      <Box sx={{ mt: { xs: 0, md: 5 } }}>
+        <Paper square sx={{ backgroundImage: `url(${BannerWallpaper})`, backgroundSize: "cover", height: 147, width: "100%" }} />
+      </Box>
+      <Box sx={{ width: { xs: "calc(100% - 32px)", md: "80vw" }, maxWidth: 1100, mx: "auto", mt: -10 }}>
+        <Paper component="form" role="search" onSubmit={(e) => e.preventDefault()}
+          sx={{ px: { xs: 2, md: 6 }, py: { xs: 3, md: 5 }, display: "flex", flexDirection: { xs: "column", md: "row" }, gap: 2 }}>
+          <TextField
+            id="search"
+            label="Procure por uma vaga de emprego"
+            value={query}
+            onChange={(e) => onQuery(e.target.value)}
+            sx={{ flex: 2 }}
+            slotProps={{ input: { endAdornment: <InputAdornment position="end"><SearchIcon aria-hidden="true" /></InputAdornment> } }}
+          />
+          <TextField
+            id="company"
+            select
+            label="Selecione uma empresa"
+            value={companyId}
+            onChange={(e) => onCompany(e.target.value)}
+            sx={{ flex: 1, minWidth: 200 }}
+            slotProps={{ select: { displayEmpty: true }, inputLabel: { shrink: true } }}
+          >
+            <MenuItem value="">Todas as empresas</MenuItem>
+            {companies.map((c) => <MenuItem key={c.id} value={c.id}>{c.name}</MenuItem>)}
+          </TextField>
+        </Paper>
+      </Box>
+    </>
+  );
 }
+/* Fim de Banner.tsx */

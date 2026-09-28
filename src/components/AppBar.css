@@ -1,11 +1,5 @@
-.app-bar {
-    background-color: #F4552B;    
-} 
-
-.card-textfield{
-    z-index: 10;
-}
-
-.card-image{
-    z-index: 1;
-}
+/* Barra do topo na cor da marca */
+.app-bar { background-color: #F4552B; }
+.app-bar .logo-link { display: inline-flex; padding: 8px; border-radius: 4px; }
+.app-bar .logo-link:focus-visible { outline: 3px solid #fff; outline-offset: 2px; }
+/* Fim de AppBar.css */
