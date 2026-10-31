@@ -1,4 +1,4 @@
-> **Projeto de estudo.** Estado conferido em 30/10/2026: 1 endereço(s) citado(s) abaixo não responde(m). Detalhes em [docs/AVALIACAO.md](docs/AVALIACAO.md) e próximos passos em [docs/PLANO-ESTRATEGICO.md](docs/PLANO-ESTRATEGICO.md).
+> **Projeto de estudo.** Estado conferido em 31/10/2026: os endereços que seguem fora do ar foram retirados deste README. Detalhes em [docs/AVALIACAO.md](docs/AVALIACAO.md) e próximos passos em [docs/PLANO-ESTRATEGICO.md](docs/PLANO-ESTRATEGICO.md).
 
 <h4 align="center"> 
 	🚧 Oxe Online 🚀
@@ -8,10 +8,10 @@
   <img alt="oxe-online" title="#oxe-online" src="./.github/tela-5.jpg" >
 </p>  
 
-### Em produção
+### Publicação
 
-- URL: https://douglasabnovato.github.io/oxe-online/
-- Hospedagem: GitHub Pages (gratuito), publicado pelo GitHub Actions a cada push na `main`
+- Fora do ar desde a conferência de 31/10/2026; para ver o projeto, rode localmente (seção "Como executar").
+- Hospedagem prevista: GitHub Pages (gratuito), publicado pelo GitHub Actions a cada push na `main`
 - Projeto de estudo: as empresas são reais, mas as vagas são ilustrativas
 - Passo a passo: [docs/DEPLOY.md](docs/DEPLOY.md)
 
@@ -81,6 +81,8 @@ Projeto de site conforme o [figma](https://www.figma.com/files/team/117182962623
 - [x] Salvar vaga (fica guardada no navegador) e "Candidatar-se" abre o site da empresa
 - [x] Layout responsivo, textos das ações em português, WCAG AA (axe-core sem violações)
 - [x] Vite 8 + MUI 7 + TypeScript 5; testes com Vitest
+
+### Como executar
 
 ```bash
 npm install
