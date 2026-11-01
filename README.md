@@ -8,6 +8,15 @@
   <img alt="oxe-online" title="#oxe-online" src="./.github/tela-5.jpg" >
 </p>  
 
+## 🧠 O que aprendi
+
+> Proposta de 01/11/2026, escrita a partir do código e das dependências. Ajuste com a sua experiência.
+
+- Montar interfaces com React, TypeScript e Material UI.
+- Estilizar componentes com Emotion.
+- Gerar build com verificação de tipos (`tsc --noEmit && vite build`).
+- Testar a interface com Vitest.
+
 ### Publicação
 
 - Fora do ar desde a conferência de 31/10/2026; para ver o projeto, rode localmente (seção "Como executar").
