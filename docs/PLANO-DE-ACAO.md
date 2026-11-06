@@ -53,6 +53,7 @@ Timebox: 30 min.
 - O MUI zera o `outline` com classes do Emotion. A regra `html body :focus-visible` ganha pela especificidade, sem `!important`.
 - A caixa de seleção do MUI esconde o `input` (opacidade 0). O foco aparece no `span` que a envolve (`.Mui-focusVisible`), e o teste confere esse elemento.
 - Sem proteção na `main`, um push direto entra sem CI (#10).
+- O `ubuntu-latest` do CI passou a ser o 26.04 em 06/11, e o Playwright 1.56 não instalava o Chromium nele. Subimos para o 1.65.
 
 **Qualidade.**
 - Testes: Vitest (filtro, só salvas, URL, página) e Playwright no Chromium (foco em toda tabulação, axe WCAG 2.2 AA com e sem filtro, URL).

@@ -8,6 +8,30 @@
   <img alt="oxe-online" title="#oxe-online" src="./.github/tela-5.jpg" >
 </p>  
 
+## Estado e próximos passos (ciclo de 03/11/2026)
+
+Projeto de estudo (N1). Finalizado: sim, com a proteção da `main` pendente do responsável (#10).
+
+**O que foi feito**
+
+- Versão 1.0: busca e empresa filtram as vagas, salvar vaga, layout responsivo, axe sem violações (#6, #7)
+- Foco visível em duas cores em todas as tabulações, com teste Playwright e axe no CI (#15, fecha #8)
+- Caixa "Só salvas" e filtros na URL: o link copiado abre a mesma lista (#15, fecha #9)
+- CI também nos PRs para `developer/**`, e Playwright 1.65 para rodar no Ubuntu do CI (#15)
+
+**O que queremos fazer**
+
+- [#10](https://github.com/douglasabnovato/oxe-online/issues/10) Proteger a `main` com PR e CI obrigatórios (responsável)
+- [#11](https://github.com/douglasabnovato/oxe-online/issues/11) Publicar no GitHub Pages (responsável). Hoje o endereço responde 404, por isso não há link publicado aqui
+- [#12](https://github.com/douglasabnovato/oxe-online/issues/12) Ordenar vagas por data de publicação
+- [#13](https://github.com/douglasabnovato/oxe-online/issues/13) Filtro de vagas remotas
+- [#14](https://github.com/douglasabnovato/oxe-online/issues/14) ESLint no CI e Dependabot
+
+**Onde está a documentação**
+
+- Estado e critérios: [docs/MVP.md](docs/MVP.md)
+- Plano do ciclo, pesquisa e engenharia: [docs/PLANO-DE-ACAO.md](docs/PLANO-DE-ACAO.md#ciclo-de-03112026)
+
 ## 🧠 O que aprendi
 
 > Proposta de 01/11/2026, escrita a partir do código e das dependências. Ajuste com a sua experiência.
@@ -90,17 +114,6 @@ Projeto de site conforme o [figma](https://www.figma.com/files/team/117182962623
 - [x] Salvar vaga (fica guardada no navegador) e "Candidatar-se" abre o site da empresa
 - [x] Layout responsivo, textos das ações em português, WCAG AA (axe-core sem violações)
 - [x] Vite 8 + MUI 7 + TypeScript 5; testes com Vitest
-
-### Ciclo de 03/11/2026
-
-- [x] Foco visível em todas as tabulações, testado com Playwright e axe no CI
-- [x] "Só salvas" e filtros na URL: o link copiado abre a mesma lista
-
-### Próximos passos
-
-- Proteger a `main` (#10) e publicar no GitHub Pages (#11): ações do responsável
-- Ordenar por data (#12), filtro de remoto (#13), ESLint e Dependabot (#14)
-- Estado e critérios: [docs/MVP.md](docs/MVP.md)
 
 ### Como executar
 
