@@ -1,3 +1,15 @@
 /* Estilos gerais da aplicação */
-:focus-visible { outline: 3px solid #1d4ed8; outline-offset: 2px; }
+/* Foco visível em duas cores (azul por fora, branco por dentro) para contrastar com fundo claro ou escuro.
+   "html body" vence o outline: 0 que o Material UI aplica em botões, campos e no seletor. */
+html body :focus-visible,
+html body .MuiButtonBase-root.Mui-focusVisible,
+html body .MuiInputBase-root:focus-within {
+  outline: 3px solid #1d4ed8;
+  outline-offset: 2px;
+  box-shadow: 0 0 0 2px #fff;
+}
+/* A caixa de seleção esconde o input (opacidade 0): o foco aparece no botão que a envolve */
+html body .MuiCheckbox-root input:focus-visible { outline: none; box-shadow: none; }
+/* Campo de texto e seletor: o contorno fica na moldura inteira (o MUI zera o outline do input com :focus, que pesa mais) */
+html body .MuiInputBase-root :focus-visible { outline: none; box-shadow: none; }
 /* Fim de App.css */
