@@ -12,19 +12,17 @@ import BookmarkIcon from "@mui/icons-material/Bookmark";
 import BookmarkBorderIcon from "@mui/icons-material/BookmarkBorder";
 import { IconGroupSVG } from "./static/icons/IconGroupSVG";
 import type { Company } from "../data/jobs";
-import { useSavedJobs } from "../lib/saved";
 
-type Props = { companies: Company[]; onClear: () => void };
+type Props = { companies: Company[]; saved: Set<string>; onToggle: (id: string) => void; onlySaved: boolean; onClear: () => void };
 
-export default function ListEnterprises({ companies, onClear }: Props) {
-  const [saved, toggle] = useSavedJobs();
+export default function ListEnterprises({ companies, saved, onToggle: toggle, onlySaved, onClear }: Props) {
   const total = companies.reduce((n, c) => n + c.jobs.length, 0);
 
   return (
     <Container maxWidth="lg" sx={{ mt: 4, mb: 6 }}>
       <Typography variant="h5" component="h1" sx={{ py: 3 }}>Vagas agrupadas por empresas</Typography>
       <Typography role="status" sx={{ mb: 2, color: "#374151" }}>
-        {total === 0 ? "Nenhuma vaga encontrada." : `${total} ${total === 1 ? "vaga encontrada" : "vagas encontradas"}.`}
+        {total === 0 ? (onlySaved && saved.size === 0 ? "Nenhuma vaga salva ainda." : "Nenhuma vaga encontrada.") : `${total} ${total === 1 ? "vaga encontrada" : "vagas encontradas"}.`}
       </Typography>
       {total === 0 && <Button variant="outlined" onClick={onClear}>Limpar filtros</Button>}
 
