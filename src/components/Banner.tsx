@@ -1,8 +1,10 @@
-/* Banner com busca por texto e seleção de empresa (antes os campos não filtravam nada) */
+/* Banner com busca por texto, seleção de empresa e "Só salvas" (antes os campos não filtravam nada) */
 import Box from "@mui/material/Box";
 import Paper from "@mui/material/Paper";
 import TextField from "@mui/material/TextField";
 import MenuItem from "@mui/material/MenuItem";
+import FormControlLabel from "@mui/material/FormControlLabel";
+import Checkbox from "@mui/material/Checkbox";
 import InputAdornment from "@mui/material/InputAdornment";
 import SearchIcon from "@mui/icons-material/Search";
 import BannerWallpaper from "./static/images/banner-wallpaper.jpg";
@@ -14,9 +16,12 @@ type Props = {
   companyId: string;
   onCompany: (v: string) => void;
   companies: Company[];
+  onlySaved: boolean;
+  onOnlySaved: (v: boolean) => void;
+  savedCount: number;
 };
 
-export default function Banner({ query, onQuery, companyId, onCompany, companies }: Props) {
+export default function Banner({ query, onQuery, companyId, onCompany, companies, onlySaved, onOnlySaved, savedCount }: Props) {
   return (
     <>
       <Box sx={{ mt: { xs: 0, md: 5 } }}>
@@ -45,6 +50,11 @@ export default function Banner({ query, onQuery, companyId, onCompany, companies
             <MenuItem value="">Todas as empresas</MenuItem>
             {companies.map((c) => <MenuItem key={c.id} value={c.id}>{c.name}</MenuItem>)}
           </TextField>
+          <FormControlLabel
+            sx={{ m: 0, whiteSpace: "nowrap" }}
+            control={<Checkbox checked={onlySaved} onChange={(e) => onOnlySaved(e.target.checked)} />}
+            label={`Só salvas (${savedCount})`}
+          />
         </Paper>
       </Box>
     </>
