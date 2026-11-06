@@ -91,13 +91,26 @@ Projeto de site conforme o [figma](https://www.figma.com/files/team/117182962623
 - [x] Layout responsivo, textos das ações em português, WCAG AA (axe-core sem violações)
 - [x] Vite 8 + MUI 7 + TypeScript 5; testes com Vitest
 
+### Ciclo de 03/11/2026
+
+- [x] Foco visível em todas as tabulações, testado com Playwright e axe no CI
+- [x] "Só salvas" e filtros na URL: o link copiado abre a mesma lista
+
+### Próximos passos
+
+- Proteger a `main` (#10) e publicar no GitHub Pages (#11): ações do responsável
+- Ordenar por data (#12), filtro de remoto (#13), ESLint e Dependabot (#14)
+- Estado e critérios: [docs/MVP.md](docs/MVP.md)
+
 ### Como executar
 
 ```bash
 npm install
 npm run dev     # http://localhost:5173
 npm test
-npm run build   # build/ (publicado no GitHub Pages pelo workflow)
+npm run build   # build/
+npx playwright install chromium   # uma vez
+npx playwright test               # foco, axe e filtros no navegador (usa o build)
 ```
 
 Detalhes em [docs/ANALISE.md](docs/ANALISE.md), [docs/ARQUITETURA.md](docs/ARQUITETURA.md) e [docs/PLANO-DE-ACAO.md](docs/PLANO-DE-ACAO.md).
