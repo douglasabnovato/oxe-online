@@ -10,10 +10,11 @@
 
 ## Estado e próximos passos (ciclo de 03/11/2026)
 
-Projeto de estudo (N1). Finalizado: sim, com a proteção da `main` pendente do responsável (#10).
+Projeto de estudo (N1). Critérios: 10 de 10 aplicáveis atendidos em 10/11/2026. Finalizado: sim. A `main` está protegida desde 10/11/2026 e só recebe mudanças por PR.
 
 **O que foi feito**
 
+- `main` protegida pelo ruleset `principal-protegida` (critério 10 atende) e workflow único com publicação no Pages só em push na `main` (10/11/2026)
 - Versão 1.0: busca e empresa filtram as vagas, salvar vaga, layout responsivo, axe sem violações (#6, #7)
 - Foco visível em duas cores em todas as tabulações, com teste Playwright e axe no CI (#15, fecha #8)
 - Caixa "Só salvas" e filtros na URL: o link copiado abre a mesma lista (#15, fecha #9)
@@ -21,8 +22,7 @@ Projeto de estudo (N1). Finalizado: sim, com a proteção da `main` pendente do 
 
 **O que queremos fazer**
 
-- [#10](https://github.com/douglasabnovato/oxe-online/issues/10) Proteger a `main` com PR e CI obrigatórios (responsável)
-- [#11](https://github.com/douglasabnovato/oxe-online/issues/11) Publicar no GitHub Pages (responsável). Hoje o endereço responde 404, por isso não há link publicado aqui
+- [#11](https://github.com/douglasabnovato/oxe-online/issues/11) Publicar no GitHub Pages (responsável liga o Pages; o workflow já está pronto). Hoje o endereço responde 404, por isso não há link publicado aqui
 - [#12](https://github.com/douglasabnovato/oxe-online/issues/12) Ordenar vagas por data de publicação
 - [#13](https://github.com/douglasabnovato/oxe-online/issues/13) Filtro de vagas remotas
 - [#14](https://github.com/douglasabnovato/oxe-online/issues/14) ESLint no CI e Dependabot
