@@ -24,7 +24,7 @@ URL esperada: **https://douglasabnovato.github.io/oxe-online/**
 |---|---|---|
 | `vite.config.ts` | `base: '/oxe-online/'` no build e no preview (raiz no `npm run dev` e nos testes) | No Pages o site fica em `/oxe-online/`; sem isso o JS, o CSS, as imagens e o favicon seriam pedidos na raiz do domínio |
 | `src/components/AppBar.tsx` | O link do logotipo usa `import.meta.env.BASE_URL` em vez de `/` | Clicar no logo levava para `douglasabnovato.github.io/`, fora do site |
-| `ci/github-actions-ci.yml` | Node 22; job `web` gera o artefato do Pages e novo job `deploy` publica (só em push na `main`) | Node 20 saiu de suporte em abr/2026; publicação automática |
+| `.github/workflows/ci.yml` (movido de `ci/` em 10/11/2026) | Node 22; job `raiz` gera o artefato do Pages e novo job `deploy` publica (só em push na `main`) | Node 20 saiu de suporte em abr/2026; publicação automática |
 | `README.md` | Seção "Em produção" (com a nota de projeto de estudo) | Link do site e deste passo a passo |
 
 Não há rotas no cliente (é uma página só), então não é preciso `404.html` nem `basename`.
@@ -68,6 +68,8 @@ Validação feita antes da entrega (sandbox, Node 22):
 
 ### Etapa 3 · Subir para o GitHub
 
+> Atualização de 10/11/2026: o código e o workflow já estão no repositório (`.github/workflows/ci.yml`), e a `main` só recebe mudanças por PR. Resta a etapa 2 (ligar o Pages) e o responsável mesclar o PR da sprint na `main`. Os passos abaixo ficam como histórico.
+
 1. Remover os arquivos substituídos:
    ```bash
    git rm public/index.html src/index.tsx src/react-app-env.d.ts
@@ -84,7 +86,7 @@ Validação feita antes da entrega (sandbox, Node 22):
 5. `git add -A`
 6. `git commit -m "chore: deploy no GitHub Pages (base /oxe-online/, workflow com publicação)"`
 7. `git push origin main`
-8. Aba **Actions**: o workflow "CI" precisa ficar verde nos jobs `web` e `deploy`.
+8. Aba **Actions**: o workflow "CI" precisa ficar verde nos jobs `raiz` e `deploy`.
 
 ### Etapa 4 · Conferir no ar
 
