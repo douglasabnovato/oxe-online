@@ -112,7 +112,7 @@ Timebox: 30 min.
 - `public/index.html` (do CRA, com `%PUBLIC_URL%`) é copiado para `build/`; conferir que o `index.html` gerado pelo Vite é o que fica.
 
 **Qualidade.**
-- Testes: Vitest (filtro, remoto, URL, página, armazenamento bloqueado) e Playwright no Chromium (fluxo principal, foco em toda tabulação, axe WCAG 2.2 AA no claro e no escuro, URL).
+- Testes: Vitest (filtro, remoto, URL, página) e Playwright no Chromium (fluxo principal, página sem `localStorage`, foco em toda tabulação, axe WCAG 2.2 AA no claro e no escuro, URL).
 - Segurança: `npm audit --omit=dev`; Dependabot de alertas desligado (API 403), então o `npm audit` é a fonte.
 
 **Definição de pronto.** `npm ci`, `npm test`, `npm run build` e `npx playwright test` passam; CI verde no PR; `docs/MVP.md`, README e `docs/DEPLOY.md` atualizados.

@@ -14,7 +14,7 @@ Projeto de estudo (N1). Critérios: 10 de 10 aplicáveis atendidos em 15/11/2026
 
 **O que foi feito**
 
-- Ciclo de 15/11/2026 (PR da `feature/2026-11-15`, que entra no #18): filtro "Aceita remoto" com `?remoto=1` na URL (#13); teste Playwright do fluxo principal com axe no claro, no escuro e no celular; página sem `localStorage` segue funcionando; `npm audit fix` (vite 8.3.8, vitest 5.1.0); Dependabot semanal; arquivos antigos do CRA apagados
+- Ciclo de 15/11/2026 (#22, que entra no #18): filtro "Aceita remoto" com `?remoto=1` na URL (#13); teste Playwright do fluxo principal com axe no claro, no escuro e no celular; página sem `localStorage` segue funcionando; `npm audit fix` (vite 8.3.8, vitest 5.1.0); Dependabot semanal; arquivos antigos do CRA apagados
 - `main` protegida pelo ruleset `principal-protegida` (critério 10) e workflow único com publicação no Pages só em push na `main` (#17, 10/11/2026)
 - Foco visível em duas cores em todas as tabulações, "Só salvas" e filtros na URL (#15)
 - Versão 1.0: busca e empresa filtram as vagas, salvar vaga, layout responsivo (#6, #7)
