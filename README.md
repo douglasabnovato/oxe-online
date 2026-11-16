@@ -10,7 +10,7 @@
 
 ## Estado e próximos passos (ciclo de 15/11/2026)
 
-Projeto de estudo (N1). Critérios: 10 de 10 aplicáveis atendidos em 15/11/2026. Finalizado: sim. A `main` está protegida desde 10/11/2026 e só recebe mudanças por PR. O site ainda não está no ar: o Pages precisa ser ligado pelo responsável (#11).
+Projeto de estudo (N1). Critérios: 9 de 10 aplicáveis atendidos em 16/11/2026; o 9 fica Parcial até o responsável ligar os alertas do Dependabot (#20). Finalizado: sim. A `main` está protegida desde 10/11/2026 e só recebe mudanças por PR. O site ainda não está no ar: o Pages precisa ser ligado pelo responsável (#11).
 
 **O que foi feito**
 
