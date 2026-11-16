@@ -1,17 +1,17 @@
 # Deploy · Oxe Online
 
-Como publicar a página de vagas por empresa no GitHub Pages, sem custo. Revisto em 15/11/2026.
+Como publicar a página de vagas por empresa no GitHub Pages, sem custo. Revisto em 16/11/2026.
 
-## 1. Estado em 15/11/2026
+## 1. Estado em 16/11/2026
 
 | Item | Estado | Como conferi |
 |---|---|---|
-| Workflow de publicação | Pronto em `.github/workflows/ci.yml` (job `deploy`), na sprint `developer/sprint-2026-11-12` | Leitura do arquivo; CI verde nos PRs |
-| GitHub Pages | **Desligado** | `gh api repos/douglasabnovato/oxe-online/pages`: 404 |
-| Site | **Fora do ar** | `curl -s -o /dev/null -w "%{http_code}" https://douglasabnovato.github.io/oxe-online/`: 404 |
+| Workflow de publicação | Na `main` (`.github/workflows/ci.yml`, jobs `raiz` e `deploy`) | [CI verde da main 70f7957](https://github.com/douglasabnovato/oxe-online/actions/runs/43882553749), 16/11/2026 |
+| GitHub Pages | Ligado, fonte GitHub Actions | `gh api repos/douglasabnovato/oxe-online/pages`, 16/11/2026: `build_type` = `workflow` |
+| Site | **No ar** | `curl -s -o /dev/null -w "%{http_code}" https://douglasabnovato.github.io/oxe-online/`, 16/11/2026 11:17: 200 |
 | `main` | Protegida (ruleset `principal-protegida`) | `gh api repos/douglasabnovato/oxe-online/rules/branches/main` |
 
-Falta o responsável: ligar o Pages e mesclar o PR #18 (issue #11).
+O responsável ligou o Pages e mesclou o PR #18 em 16/11/2026. Falta pôr o link no "About" (Etapa 4) e fechar a #11.
 
 ## 2. Decisão de hospedagem
 
@@ -43,10 +43,12 @@ Não há rotas no cliente (é uma página só), então não é preciso `404.html
 ### Pontos de atenção: marcas e conteúdo
 
 - O site mostra nomes e logos de empresas reais (Niantic, Instacart e Twitch; como "investidores", Stripe e Yelp, além da Aircnc, que é fictícia) com vagas que não existem. O botão "Candidatar-se" abre o site de carreiras real da empresa.
-- A página não mostra aviso de "projeto de estudo"; ele está só no README. A decisão do texto e do lugar está na #19. Recomendado antes de divulgar o link.
+- Decidido na #19 (16/11/2026): banner no topo da página com "Projeto de estudo: as empresas são reais, mas as vagas são ilustrativas e não há processo seletivo aqui."
 - Não há segredo nem coleta de dados pessoais.
 
 ## 3. Passo a passo do responsável
+
+> Etapas 1 a 3 concluídas pelo responsável em 16/11/2026 (Pages ligado, #18 mesclado, site 200). Falta a Etapa 4. O roteiro fica como referência.
 
 Fonte: [GitHub Docs: configurar a fonte de publicação do Pages](https://docs.github.com/en/pages/getting-started-with-github-pages/configuring-a-publishing-source-for-your-github-pages-site).
 
@@ -82,7 +84,7 @@ Se a sprint entrar na `main` antes desta etapa, o job `deploy` fica pulado e a `
 ## 4. Validar localmente (Git Bash)
 
 1. `npm ci`
-2. `npm test` (11 testes)
+2. `npm test` (12 testes)
 3. `npm run build`
-4. `npx playwright install chromium` (uma vez) e `npx playwright test` (8 testes, contra o build em `http://localhost:4319/oxe-online/`)
+4. `npx playwright install chromium` (uma vez) e `npx playwright test` (10 testes, contra o build em `http://localhost:4319/oxe-online/`)
 5. `npm run preview` e abrir `http://localhost:4173/oxe-online/`.
