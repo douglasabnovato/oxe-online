@@ -48,6 +48,8 @@ Não há rotas no cliente (é uma página só), então não é preciso `404.html
 
 ## 3. Passo a passo do responsável
 
+> Etapas 1 a 3 concluídas pelo responsável em 16/11/2026 (Pages ligado, #18 mesclado, site 200). Falta a Etapa 4. O roteiro fica como referência.
+
 Fonte: [GitHub Docs: configurar a fonte de publicação do Pages](https://docs.github.com/en/pages/getting-started-with-github-pages/configuring-a-publishing-source-for-your-github-pages-site).
 
 ### Etapa 1 · Ligar o Pages (antes do merge na `main`)

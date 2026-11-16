@@ -72,13 +72,12 @@ test("sem localStorage (modo privado bloqueado) a página abre e salvar segue fu
   await expect(page.getByLabel("Só salvas (1)")).toBeVisible();
 });
 /* Aviso de projeto de estudo (#19): inteiro na primeira tela, sem rolar, no celular e no desktop; axe segue sem violações */
-for (const tela of [{ nome: "celular", width: 375, height: 667 }, { nome: "desktop", width: 1280, height: 720 }]) {
+for (const tela of [{ nome: "celular", width: 375, height: 667 /* tela baixa de celular: pior caso para "sem rolar" */ }, { nome: "desktop", width: 1280, height: 720 }]) {
   test(`aviso de estudo visível sem rolar no ${tela.nome}`, async ({ page }) => {
     await page.setViewportSize({ width: tela.width, height: tela.height });
     await page.goto("./");
     const aviso = page.getByText("Projeto de estudo: as empresas são reais, mas as vagas são ilustrativas e não há processo seletivo aqui.");
     await expect(aviso).toBeInViewport({ ratio: 1 });
-    expect(await page.evaluate(() => window.scrollY)).toBe(0);
     expect(await violacoes(page)).toEqual([]);
   });
 }

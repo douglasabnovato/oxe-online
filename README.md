@@ -12,7 +12,7 @@
 
 Projeto de estudo (N1). Critérios: 10 de 10 aplicáveis atendidos em 16/11/2026. Finalizado: sim. A `main` está protegida desde 10/11/2026 e só recebe mudanças por PR.
 
-**No ar:** https://douglasabnovato.github.io/oxe-online/ (`curl` devolveu 200 em 16/11/2026 às 11:17). A página avisa que é projeto de estudo: as empresas são reais, mas as vagas são ilustrativas.
+**No ar:** https://douglasabnovato.github.io/oxe-online/ (`curl` devolveu 200 em 16/11/2026 às 11:17). O aviso de projeto de estudo na página (#19) entra no ar com o PR da sprint-19, quando o responsável mesclar.
 
 **O que foi feito**
 
