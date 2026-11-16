@@ -31,7 +31,7 @@ URL esperada: **https://douglasabnovato.github.io/oxe-online/**
 |---|---|---|
 | `vite.config.ts` | `base: '/oxe-online/'` no build e no preview (raiz no `npm run dev` e nos testes) | No Pages o site fica em `/oxe-online/`; sem isso o JS, o CSS e as imagens seriam pedidos na raiz do domínio |
 | `src/components/AppBar.tsx` | O link do logotipo usa `import.meta.env.BASE_URL` | Clicar no logo levaria para fora do site |
-| `.github/workflows/ci.yml` | Job `raiz` testa, gera o build e, só em push na `main`, envia o artefato (`upload-pages-artifact`); job `deploy` publica (`deploy-pages`) depois do `raiz` verde | Publicação automática, sem passo manual |
+| `.github/workflows/ci.yml` | Job `raiz` testa, gera o build e, só na `main` (push ou "Run workflow") e com a variável `PAGES_VIA_ACTIONS=true`, envia o artefato (`upload-pages-artifact`); job `deploy` publica (`deploy-pages`) depois do `raiz` verde, com a mesma condição | Publicação automática, sem passo manual |
 
 Não há rotas no cliente (é uma página só), então não é preciso `404.html` nem `basename`. A entrada antiga do Create React App (`public/index.html`, `src/index.tsx`) foi apagada em 15/11/2026.
 
@@ -55,9 +55,10 @@ Fonte: [GitHub Docs: configurar a fonte de publicação do Pages](https://docs.g
 1. Abrir https://github.com/douglasabnovato/oxe-online → **Settings**.
 2. No menu da esquerda, em "Code and automation": **Pages**.
 3. Em **Build and deployment → Source**, escolher **GitHub Actions**. Não clicar em nenhum modelo de workflow: o `ci.yml` já existe.
-4. Não é preciso criar variável nem segredo.
+4. **Settings → Secrets and variables → Actions → Variables → New repository variable**: `PAGES_VIA_ACTIONS` = `true`. Sem ela, os jobs de publicação ficam pulados (skipped) e o CI segue verde.
+5. Para publicar: **Actions → CI → Run workflow** (branch `main`).
 
-Se a sprint entrar na `main` antes desta etapa, o job `deploy` falha no push. Basta ligar o Pages e rodar de novo (Actions → run da `main` → **Re-run failed jobs**).
+Se a sprint entrar na `main` antes desta etapa, o job `deploy` fica pulado e a `main` segue verde. Depois de ligar o Pages e criar a variável, publique com **Actions → CI → Run workflow**.
 
 ### Etapa 2 · Mesclar a sprint
 
