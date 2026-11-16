@@ -3,9 +3,10 @@
 ```mermaid
 flowchart TB
   main[main.tsx - tema MUI] --> App[App.tsx - estado da busca]
-  App --> Banner[Banner - texto + empresa]
+  App --> Banner[Banner - texto, empresa, remoto e só salvas]
   App --> List[ListEnterprises - cartões e vagas]
   App --> filter[lib/filter.ts]
+  App --> url[lib/url.ts - filtros na URL]
   filter --> data[(data/jobs.ts)]
   List --> saved[lib/saved.ts - localStorage]
 ```
