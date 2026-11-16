@@ -1,9 +1,10 @@
-# CI: testes, build e Playwright em PR e push; publicação no GitHub Pages só em push na main, depois do build verde
+# CI: testes, build e Playwright em PR e push; publicação no GitHub Pages só na main (push ou "Run workflow") e com a variável PAGES_VIA_ACTIONS=true, depois do build verde
 name: CI
 
 on:
   push:
     branches: [main]
+  workflow_dispatch:
   pull_request:
     branches: [main, 'developer/**']
 
@@ -25,16 +26,16 @@ jobs:
       - run: npm run build
       - run: npx playwright install --with-deps chromium
       - run: npx playwright test
-      # Artefato do Pages só em push na main
+      # Artefato do Pages só na main (push ou "Run workflow") e com o Pages ligado pelo responsável
       - uses: actions/upload-pages-artifact@v3
-        if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+        if: github.ref == 'refs/heads/main' && (github.event_name == 'push' || github.event_name == 'workflow_dispatch') && vars.PAGES_VIA_ACTIONS == 'true'
         with:
           path: build
 
-  # Publicação: só em push na main e só depois do job raiz verde
+  # Publicação: só na main (push ou "Run workflow"), só com a variável PAGES_VIA_ACTIONS=true (criada pelo responsável ao ligar o Pages) e só depois do job raiz verde
   deploy:
     needs: raiz
-    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+    if: github.ref == 'refs/heads/main' && (github.event_name == 'push' || github.event_name == 'workflow_dispatch') && vars.PAGES_VIA_ACTIONS == 'true'
     runs-on: ubuntu-latest
     permissions:
       pages: write
