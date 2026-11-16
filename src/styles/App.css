@@ -12,4 +12,15 @@ html body .MuiInputBase-root:focus-within {
 html body .MuiCheckbox-root input:focus-visible { outline: none; box-shadow: none; }
 /* Campo de texto e seletor: o contorno fica na moldura inteira (o MUI zera o outline do input com :focus, que pesa mais) */
 html body .MuiInputBase-root :focus-visible { outline: none; box-shadow: none; }
+/* Aviso de projeto de estudo (#19): faixa no topo, texto escuro sobre âmbar claro (contraste acima de 7:1) */
+.aviso-estudo {
+  margin: 0;
+  padding: 8px 16px;
+  background: #fef3c7;
+  color: #78350f;
+  border-bottom: 1px solid #f59e0b;
+  font-size: 0.95rem;
+  line-height: 1.4;
+  text-align: center;
+}
 /* Fim de App.css */

@@ -112,4 +112,13 @@ describe("página", () => {
     expect(link.getAttribute("target")).toBe("_blank");
   });
 });
+describe("aviso de projeto de estudo (#19)", () => {
+  it("mostra o texto escolhido antes da busca", () => {
+    render(<App />);
+    const aviso = screen.getByTestId("aviso-estudo");
+    expect(aviso.textContent).toBe("Projeto de estudo: as empresas são reais, mas as vagas são ilustrativas e não há processo seletivo aqui.");
+    const busca = screen.getByRole("search");
+    expect(aviso.compareDocumentPosition(busca) & Node.DOCUMENT_POSITION_FOLLOWING).toBeTruthy();
+  });
+});
 /* Fim de app.test.tsx */
