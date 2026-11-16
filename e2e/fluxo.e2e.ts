@@ -1,4 +1,4 @@
-/* Fluxo principal no navegador: buscar, salvar, recarregar, rever só as salvas e candidatar-se; axe no claro e no escuro */
+/* Fluxo principal no navegador: buscar, salvar, recarregar, rever só as salvas e candidatar-se; axe na tela clara (o app não tem tema escuro próprio) */
 import { test, expect, type Page } from "@playwright/test";
 import AxeBuilder from "@axe-core/playwright";
 
@@ -21,6 +21,7 @@ test("salvar, recarregar, rever só as salvas e candidatar-se", async ({ page })
 
   /* Limpa a busca, recarrega e confere que a vaga continua salva */
   await page.getByLabel("Procure por uma vaga de emprego").fill("");
+  await expect(page).not.toHaveURL(/[?&]q=/);
   await page.reload();
   await expect(page.getByRole("status")).toHaveText("8 vagas encontradas.");
   await page.getByLabel("Só salvas (1)").check();
@@ -53,12 +54,11 @@ test("vagas remotas da Twitch em 3 ações, e o link copiado abre a mesma lista"
   await expect(page.getByLabel("Aceita remoto")).toBeChecked();
 });
 
-test("axe sem violações com o sistema em modo escuro e na largura de celular", async ({ page }) => {
-  await page.emulateMedia({ colorScheme: "dark" });
+test("axe sem violações na largura de celular", async ({ page }) => {
+  await page.setViewportSize({ width: 375, height: 812 });
   await page.goto("./");
   await expect(page.getByRole("status")).toHaveText("8 vagas encontradas.");
-  expect(await violacoes(page)).toEqual([]);
-  await page.setViewportSize({ width: 375, height: 812 });
+  await expect(page.getByRole("button", { name: /^Salvar: Senior iOS/ })).toBeVisible();
   expect(await violacoes(page)).toEqual([]);
 });
 

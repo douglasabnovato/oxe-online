@@ -84,14 +84,14 @@ Timebox: 30 min.
 | Ideia | O que levamos para o projeto | Fonte |
 |---|---|---|
 | Publicar por workflow próprio | O Pages aceita um workflow que gera o artefato com `upload-pages-artifact` e publica com `deploy-pages`; só falta escolher "GitHub Actions" como fonte em Settings → Pages. O workflow já faz isso; o passo do responsável ficou na #11 | [GitHub Docs: configurar a fonte de publicação do Pages](https://docs.github.com/en/pages/getting-started-with-github-pages/configuring-a-publishing-source-for-your-github-pages-site) |
-| Modo escuro emulado | O Playwright emula `prefers-color-scheme: dark` com `page.emulateMedia({ colorScheme: "dark" })`. Virou uma rodada do axe no escuro | [Playwright: emulação](https://playwright.dev/docs/emulation) |
+| Modo escuro emulado | O Playwright emula `prefers-color-scheme: dark` com `page.emulateMedia({ colorScheme: "dark" })`. Não foi usado: o app não tem tema escuro próprio (nem `prefers-color-scheme`), então a emulação repetia a tela clara. Corrigido em 16/11/2026 | [Playwright: emulação](https://playwright.dev/docs/emulation) |
 | Indicador de foco | O W3C pede indicador com área de pelo menos um contorno de 2 px e mudança de contraste de 3:1 (2.4.13, AAA). O teste já mede 2 px; mantemos | [W3C: Understanding Focus Appearance](https://www.w3.org/WAI/WCAG22/Understanding/focus-appearance.html) |
 
 **Backlog priorizado (impacto × esforço).**
 
 | Prioridade | Item | Impacto | Esforço | Destino |
 |---|---|---|---|---|
-| 1 | Teste Playwright do fluxo principal (salvar, recarregar, só salvas, candidatar-se) com axe no claro e no escuro | Alto | Baixo | Este ciclo |
+| 1 | Teste Playwright do fluxo principal (salvar, recarregar, só salvas, candidatar-se) com axe em 1280 px e 375 px | Alto | Baixo | Este ciclo |
 | 2 | Vaga salva sem `localStorage` (modo privado) não quebra a página, com teste | Médio | Baixo | Este ciclo |
 | 3 | Filtro "Aceita remoto" na URL (#13) | Médio | Baixo | Este ciclo |
 | 4 | Dependabot semanal para npm e Actions (parte da #14) | Médio | Baixo | Este ciclo |
@@ -109,10 +109,10 @@ Timebox: 30 min.
 **Riscos.**
 - Se a sprint entrar na `main` antes de o Pages ser ligado, o job `deploy` falha no push. Ordem documentada na #11 e no PR #18.
 - O Dependabot vai abrir PRs de versão maior das Actions (`checkout` v7, `setup-node` v7, `upload-pages-artifact` v5, `deploy-pages` v5); o merge é do responsável.
-- `public/index.html` (do CRA, com `%PUBLIC_URL%`) é copiado para `build/`; conferir que o `index.html` gerado pelo Vite é o que fica.
+- Resolvido no PR #22: `public/index.html` (do CRA, com `%PUBLIC_URL%`) era copiado para `build/`; o arquivo foi apagado e fica só o `index.html` gerado pelo Vite.
 
 **Qualidade.**
-- Testes: Vitest (filtro, remoto, URL, página) e Playwright no Chromium (fluxo principal, página sem `localStorage`, foco em toda tabulação, axe WCAG 2.2 AA no claro e no escuro, URL).
+- Testes: Vitest (filtro, remoto, URL, página) e Playwright no Chromium (fluxo principal, página sem `localStorage`, foco em toda tabulação, axe WCAG 2.2 AA em 1280 px e 375 px, sem tema escuro próprio, URL).
 - Segurança: `npm audit --omit=dev`; Dependabot de alertas desligado (API 403), então o `npm audit` é a fonte.
 
 **Definição de pronto.** `npm ci`, `npm test`, `npm run build` e `npx playwright test` passam; CI verde no PR; `docs/MVP.md`, README e `docs/DEPLOY.md` atualizados.
