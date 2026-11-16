@@ -1,4 +1,4 @@
-/* Página única: barra do topo, busca (texto, empresa e só salvas) e lista de vagas agrupadas por empresa; filtros espelhados na URL */
+/* Página única: barra do topo, busca (texto, empresa, aceita remoto e só salvas) e lista de vagas agrupadas por empresa; filtros espelhados na URL */
 import { useEffect, useState } from "react";
 import AppBar from "./components/AppBar";
 import Banner from "./components/Banner";
@@ -15,24 +15,26 @@ function App() {
   const [initial] = useState(() => readFilters(window.location.search, companyIds));
   const [query, setQuery] = useState(initial.query);
   const [companyId, setCompanyId] = useState(initial.companyId);
+  const [onlyRemote, setOnlyRemote] = useState(initial.onlyRemote);
   const [onlySaved, setOnlySaved] = useState(initial.onlySaved);
   const [saved, toggle] = useSavedJobs();
-  const visible = filterCompanies(companies, query, companyId, onlySaved ? saved : undefined);
+  const visible = filterCompanies(companies, query, companyId, onlySaved ? saved : undefined, onlyRemote);
 
   /* Atualiza a URL sem criar entrada no histórico a cada tecla */
   useEffect(() => {
-    const qs = writeFilters({ query, companyId, onlySaved });
+    const qs = writeFilters({ query, companyId, onlyRemote, onlySaved });
     window.history.replaceState(null, "", `${window.location.pathname}${qs}${window.location.hash}`);
-  }, [query, companyId, onlySaved]);
+  }, [query, companyId, onlyRemote, onlySaved]);
 
   return (
     <>
       <AppBar />
       <main>
         <Banner query={query} onQuery={setQuery} companyId={companyId} onCompany={setCompanyId} companies={companies}
+          onlyRemote={onlyRemote} onOnlyRemote={setOnlyRemote}
           onlySaved={onlySaved} onOnlySaved={setOnlySaved} savedCount={saved.size} />
         <ListEnterprises companies={visible} saved={saved} onToggle={toggle} onlySaved={onlySaved}
-          onClear={() => { setQuery(""); setCompanyId(""); setOnlySaved(false); }} />
+          onClear={() => { setQuery(""); setCompanyId(""); setOnlyRemote(false); setOnlySaved(false); }} />
       </main>
     </>
   );

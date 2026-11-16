@@ -1,5 +1,5 @@
-/* Filtros na URL (?q=&empresa=&salvas=1): o link copiado da barra abre a mesma lista */
-export type Filters = { query: string; companyId: string; onlySaved: boolean };
+/* Filtros na URL (?q=&empresa=&remoto=1&salvas=1): o link copiado da barra abre a mesma lista */
+export type Filters = { query: string; companyId: string; onlyRemote: boolean; onlySaved: boolean };
 
 /* Lê os filtros de uma query string; empresa desconhecida vira "todas" */
 export function readFilters(search: string, companyIds: string[]): Filters {
@@ -8,6 +8,7 @@ export function readFilters(search: string, companyIds: string[]): Filters {
   return {
     query: (p.get("q") ?? "").slice(0, 100),
     companyId: companyIds.includes(companyId) ? companyId : "",
+    onlyRemote: p.get("remoto") === "1",
     onlySaved: p.get("salvas") === "1",
   };
 }
@@ -17,6 +18,7 @@ export function writeFilters(f: Filters): string {
   const p = new URLSearchParams();
   if (f.query.trim()) p.set("q", f.query.trim());
   if (f.companyId) p.set("empresa", f.companyId);
+  if (f.onlyRemote) p.set("remoto", "1");
   if (f.onlySaved) p.set("salvas", "1");
   const s = p.toString();
   return s ? `?${s}` : "";

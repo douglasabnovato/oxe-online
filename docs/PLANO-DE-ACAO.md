@@ -68,3 +68,57 @@ Timebox: 30 min.
 **Este ciclo executa.** #8 (foco), #9 (só salvas e URL), CI na `developer`, `docs/MVP.md` com régua N1 e critério 10 conforme a proteção.
 
 **Vira issue.** #10 e #11 (responsável); #12, #13 e #14 (agente).
+
+## Ciclo de 15/11/2026
+
+> Branch `feature/2026-11-15` → `developer/sprint-2026-11-12` (PR #18 aberto) → `main`. Nível: Estudo (N1), 10 critérios aplicáveis (5 e 7 não se aplicam).
+
+### Produto
+
+**Problema e público.** Quem estuda React com TypeScript e MUI pratica uma lista de vagas que filtra, salva e abre o site da empresa. Quem procura vaga é o público simulado.
+
+**Hipótese e meta.** Acreditamos que filtros combináveis (texto, empresa, remoto e só salvas) guardados na URL deixam a pessoa achar e compartilhar uma vaga sem instruções. Meta: chegar à lista "remotas da Twitch" em até 3 ações. Saberemos quando o teste Playwright do fluxo principal fizer esse caminho no CI e o link copiado abrir a mesma lista.
+
+**O que a pesquisa trouxe.**
+
+| Ideia | O que levamos para o projeto | Fonte |
+|---|---|---|
+| Publicar por workflow próprio | O Pages aceita um workflow que gera o artefato com `upload-pages-artifact` e publica com `deploy-pages`; só falta escolher "GitHub Actions" como fonte em Settings → Pages. O workflow já faz isso; o passo do responsável ficou na #11 | [GitHub Docs: configurar a fonte de publicação do Pages](https://docs.github.com/en/pages/getting-started-with-github-pages/configuring-a-publishing-source-for-your-github-pages-site) |
+| Modo escuro emulado | O Playwright emula `prefers-color-scheme: dark` com `page.emulateMedia({ colorScheme: "dark" })`. Não foi usado: o app não tem tema escuro próprio (nem `prefers-color-scheme`), então a emulação repetia a tela clara. Corrigido em 16/11/2026 | [Playwright: emulação](https://playwright.dev/docs/emulation) |
+| Indicador de foco | O W3C pede indicador com área de pelo menos um contorno de 2 px e mudança de contraste de 3:1 (2.4.13, AAA). O teste já mede 2 px; mantemos | [W3C: Understanding Focus Appearance](https://www.w3.org/WAI/WCAG22/Understanding/focus-appearance.html) |
+
+**Backlog priorizado (impacto × esforço).**
+
+| Prioridade | Item | Impacto | Esforço | Destino |
+|---|---|---|---|---|
+| 1 | Teste Playwright do fluxo principal (salvar, recarregar, só salvas, candidatar-se) com axe em 1280 px e 375 px | Alto | Baixo | Este ciclo |
+| 2 | Vaga salva sem `localStorage` (modo privado) não quebra a página, com teste | Médio | Baixo | Este ciclo |
+| 3 | Filtro "Aceita remoto" na URL (#13) | Médio | Baixo | Este ciclo |
+| 4 | Dependabot semanal para npm e Actions (parte da #14) | Médio | Baixo | Este ciclo |
+| 5 | Apagar arquivos sem uso (entrada antiga do CRA e imagens) | Baixo | Baixo | Este ciclo |
+| 6 | `docs/MVP.md` com comando, data e resultado em cada "Atende" | Alto | Baixo | Este ciclo |
+| 7 | Ligar o Pages e mesclar a sprint | Médio | Baixo | Responsável (#11) |
+| 8 | ESLint no CI (resto da #14) e ordenar por data (#12) | Médio | Médio | Issues |
+
+**Fora do escopo.** Backend, candidatura, contas, vagas reais, mudar o texto da página sem decisão do responsável (aviso de projeto de estudo vira issue).
+
+### Engenharia
+
+**Arquitetura.** SPA React 18 + MUI 7 com Vite 8. Dados locais em `src/data/jobs.ts`, agora com o campo `remote` por vaga. Filtro puro em `src/lib/filter.ts`, filtros da URL em `src/lib/url.ts` (`?remoto=1` novo) e vagas salvas em `src/lib/saved.ts`. Publicação pelo job `deploy` do `.github/workflows/ci.yml`, só em push na `main`.
+
+**Riscos.**
+- Se a sprint entrar na `main` antes de o Pages ser ligado, o job `deploy` falha no push. Ordem documentada na #11 e no PR #18.
+- O Dependabot vai abrir PRs de versão maior das Actions (`checkout` v7, `setup-node` v7, `upload-pages-artifact` v5, `deploy-pages` v5); o merge é do responsável.
+- Resolvido no PR #22: `public/index.html` (do CRA, com `%PUBLIC_URL%`) era copiado para `build/`; o arquivo foi apagado e fica só o `index.html` gerado pelo Vite.
+
+**Qualidade.**
+- Testes: Vitest (filtro, remoto, URL, página) e Playwright no Chromium (fluxo principal, página sem `localStorage`, foco em toda tabulação, axe WCAG 2.2 AA em 1280 px e 375 px, sem tema escuro próprio, URL).
+- Segurança: `npm audit --omit=dev`; Dependabot de alertas desligado (API 403), então o `npm audit` é a fonte.
+
+**Definição de pronto.** `npm ci`, `npm test`, `npm run build` e `npx playwright test` passam; CI verde no PR; `docs/MVP.md`, README e `docs/DEPLOY.md` atualizados.
+
+### Plano de ação
+
+**Este ciclo executa.** Itens 1 a 6 do backlog; comentários nas issues #10 a #14.
+
+**Vira issue.** Aviso de projeto de estudo na página (decisão do responsável), alertas do Dependabot (Settings), ESLint no CI (#14) e ordenar por data (#12). Pages segue na #11.

@@ -56,4 +56,14 @@ test("filtros da URL abrem a mesma lista e a busca atualiza a URL", async ({ pag
   await expect(page).toHaveURL(/q=android/);
   await expect(page).toHaveURL(/empresa=twitch/);
 });
+
+test("link com remoto abre só as vagas remotas, e o axe segue sem violações", async ({ page }) => {
+  await page.goto("./?empresa=twitch&remoto=1");
+  await expect(page.getByRole("status")).toHaveText("2 vagas encontradas.");
+  await expect(page.getByLabel("Aceita remoto")).toBeChecked();
+  await page.goto("./?remoto=1&q=ios");
+  await expect(page.getByRole("status")).toHaveText("Nenhuma vaga encontrada.");
+  const tags = ["wcag2a", "wcag2aa", "wcag21aa", "wcag22aa"];
+  expect((await new AxeBuilder({ page }).withTags(tags).analyze()).violations).toEqual([]);
+});
 /* Fim de foco.e2e.ts */
