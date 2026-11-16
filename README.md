@@ -8,29 +8,31 @@
   <img alt="oxe-online" title="#oxe-online" src="./.github/tela-5.jpg" >
 </p>  
 
-## Estado e próximos passos (ciclo de 03/11/2026)
+## Estado e próximos passos (ciclo de 15/11/2026)
 
-Projeto de estudo (N1). Critérios: 10 de 10 aplicáveis atendidos em 10/11/2026. Finalizado: sim. A `main` está protegida desde 10/11/2026 e só recebe mudanças por PR.
+Projeto de estudo (N1). Critérios: 10 de 10 aplicáveis atendidos em 15/11/2026. Finalizado: sim. A `main` está protegida desde 10/11/2026 e só recebe mudanças por PR. O site ainda não está no ar: o Pages precisa ser ligado pelo responsável (#11).
 
 **O que foi feito**
 
-- `main` protegida pelo ruleset `principal-protegida` (critério 10 atende) e workflow único com publicação no Pages só em push na `main` (10/11/2026)
-- Versão 1.0: busca e empresa filtram as vagas, salvar vaga, layout responsivo, axe sem violações (#6, #7)
-- Foco visível em duas cores em todas as tabulações, com teste Playwright e axe no CI (#15, fecha #8)
-- Caixa "Só salvas" e filtros na URL: o link copiado abre a mesma lista (#15, fecha #9)
-- CI também nos PRs para `developer/**`, e Playwright 1.65 para rodar no Ubuntu do CI (#15)
+- Ciclo de 15/11/2026 (#22, que entra no #18): filtro "Aceita remoto" com `?remoto=1` na URL (#13); teste Playwright do fluxo principal com axe no claro, no escuro e no celular; página sem `localStorage` segue funcionando; `npm audit fix` (vite 8.3.8, vitest 5.1.0); Dependabot semanal; arquivos antigos do CRA apagados
+- `main` protegida pelo ruleset `principal-protegida` (critério 10) e workflow único com publicação no Pages só em push na `main` (#17, 10/11/2026)
+- Foco visível em duas cores em todas as tabulações, "Só salvas" e filtros na URL (#15)
+- Versão 1.0: busca e empresa filtram as vagas, salvar vaga, layout responsivo (#6, #7)
 
 **O que queremos fazer**
 
-- [#11](https://github.com/douglasabnovato/oxe-online/issues/11) Publicar no GitHub Pages (responsável liga o Pages; o workflow já está pronto). Hoje o endereço responde 404, por isso não há link publicado aqui
+- [#11](https://github.com/douglasabnovato/oxe-online/issues/11) Publicar no GitHub Pages (responsável liga o Pages e mescla o #18; passo a passo em [docs/DEPLOY.md](docs/DEPLOY.md))
+- [#19](https://github.com/douglasabnovato/oxe-online/issues/19) Mostrar na página o aviso de projeto de estudo (decisão do responsável)
+- [#20](https://github.com/douglasabnovato/oxe-online/issues/20) Ligar os alertas do Dependabot (responsável)
 - [#12](https://github.com/douglasabnovato/oxe-online/issues/12) Ordenar vagas por data de publicação
-- [#13](https://github.com/douglasabnovato/oxe-online/issues/13) Filtro de vagas remotas
-- [#14](https://github.com/douglasabnovato/oxe-online/issues/14) ESLint no CI e Dependabot
+- [#14](https://github.com/douglasabnovato/oxe-online/issues/14) ESLint no CI
+- [#21](https://github.com/douglasabnovato/oxe-online/issues/21) Atualizar React para 19 e MUI para 9
 
 **Onde está a documentação**
 
 - Estado e critérios: [docs/MVP.md](docs/MVP.md)
-- Plano do ciclo, pesquisa e engenharia: [docs/PLANO-DE-ACAO.md](docs/PLANO-DE-ACAO.md#ciclo-de-03112026)
+- Plano do ciclo, pesquisa e engenharia: [docs/PLANO-DE-ACAO.md](docs/PLANO-DE-ACAO.md#ciclo-de-15112026)
+- Publicação: [docs/DEPLOY.md](docs/DEPLOY.md)
 
 ## 🧠 O que aprendi
 
@@ -43,7 +45,7 @@ Projeto de estudo (N1). Critérios: 10 de 10 aplicáveis atendidos em 10/11/2026
 
 ### Publicação
 
-- Fora do ar desde a conferência de 31/10/2026; para ver o projeto, rode localmente (seção "Como executar").
+- Fora do ar em 15/11/2026 (`curl` devolve 404); para ver o projeto, rode localmente (seção "Como executar").
 - Hospedagem prevista: GitHub Pages (gratuito), publicado pelo GitHub Actions a cada push na `main`
 - Projeto de estudo: as empresas são reais, mas as vagas são ilustrativas
 - Passo a passo: [docs/DEPLOY.md](docs/DEPLOY.md)
@@ -113,7 +115,7 @@ Projeto de site conforme o [figma](https://www.figma.com/files/team/117182962623
 - [x] Lista gerada a partir de `src/data/jobs.ts` (antes 3 blocos copiados à mão)
 - [x] Salvar vaga (fica guardada no navegador) e "Candidatar-se" abre o site da empresa
 - [x] Layout responsivo, textos das ações em português, WCAG AA (axe-core sem violações)
-- [x] Vite 8 + MUI 7 + TypeScript 5; testes com Vitest
+- [x] Vite 8 + MUI 7 + TypeScript 5; testes com Vitest e Playwright
 
 ### Como executar
 
@@ -123,7 +125,7 @@ npm run dev     # http://localhost:5173
 npm test
 npm run build   # build/
 npx playwright install chromium   # uma vez
-npx playwright test               # foco, axe e filtros no navegador (usa o build)
+npx playwright test               # fluxo principal, foco, axe e filtros no navegador (usa o build)
 ```
 
 Detalhes em [docs/ANALISE.md](docs/ANALISE.md), [docs/ARQUITETURA.md](docs/ARQUITETURA.md) e [docs/PLANO-DE-ACAO.md](docs/PLANO-DE-ACAO.md).

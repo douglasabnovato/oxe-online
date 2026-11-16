@@ -49,7 +49,7 @@ export default function ListEnterprises({ companies, saved, onToggle: toggle, on
                 <Box component="li" key={j.id}
                   sx={{ border: 1, borderColor: "#DCE0DD", p: 2, display: "flex", flexWrap: "wrap", alignItems: "center", gap: 1.5 }}>
                   <Typography sx={{ flex: "1 1 280px" }}>{j.title}</Typography>
-                  <Typography component="span" sx={{ color: "#4b5563" }}>{j.posted}</Typography>
+                  <Typography component="span" sx={{ color: "#4b5563" }}>{j.remote ? "Aceita remoto" : j.city} · {j.posted}</Typography>
                   <Button variant="contained" aria-pressed={isSaved} onClick={() => toggle(j.id)}
                     startIcon={isSaved ? <BookmarkIcon /> : <BookmarkBorderIcon />}
                     aria-label={`${isSaved ? "Remover dos salvos" : "Salvar"}: ${j.title}`}

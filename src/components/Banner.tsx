@@ -1,4 +1,4 @@
-/* Banner com busca por texto, seleção de empresa e "Só salvas" (antes os campos não filtravam nada) */
+/* Banner com busca por texto, seleção de empresa, "Aceita remoto" e "Só salvas" (antes os campos não filtravam nada) */
 import Box from "@mui/material/Box";
 import Paper from "@mui/material/Paper";
 import TextField from "@mui/material/TextField";
@@ -16,12 +16,14 @@ type Props = {
   companyId: string;
   onCompany: (v: string) => void;
   companies: Company[];
+  onlyRemote: boolean;
+  onOnlyRemote: (v: boolean) => void;
   onlySaved: boolean;
   onOnlySaved: (v: boolean) => void;
   savedCount: number;
 };
 
-export default function Banner({ query, onQuery, companyId, onCompany, companies, onlySaved, onOnlySaved, savedCount }: Props) {
+export default function Banner({ query, onQuery, companyId, onCompany, companies, onlyRemote, onOnlyRemote, onlySaved, onOnlySaved, savedCount }: Props) {
   return (
     <>
       <Box sx={{ mt: { xs: 0, md: 5 } }}>
@@ -50,6 +52,11 @@ export default function Banner({ query, onQuery, companyId, onCompany, companies
             <MenuItem value="">Todas as empresas</MenuItem>
             {companies.map((c) => <MenuItem key={c.id} value={c.id}>{c.name}</MenuItem>)}
           </TextField>
+          <FormControlLabel
+            sx={{ m: 0, whiteSpace: "nowrap" }}
+            control={<Checkbox checked={onlyRemote} onChange={(e) => onOnlyRemote(e.target.checked)} />}
+            label="Aceita remoto"
+          />
           <FormControlLabel
             sx={{ m: 0, whiteSpace: "nowrap" }}
             control={<Checkbox checked={onlySaved} onChange={(e) => onOnlySaved(e.target.checked)} />}
