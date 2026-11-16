@@ -41,6 +41,18 @@ test("salvar, recarregar, rever só as salvas e candidatar-se", async ({ page })
   await expect(page.getByRole("status")).toHaveText("8 vagas encontradas.");
 });
 
+test("vagas remotas da Twitch em 3 ações, e o link copiado abre a mesma lista", async ({ page }) => {
+  await page.goto("./");
+  await page.getByLabel("Selecione uma empresa").click();
+  await page.getByRole("option", { name: "Twitch" }).click();
+  await page.getByLabel("Aceita remoto").check();
+  await expect(page.getByRole("status")).toHaveText("2 vagas encontradas.");
+  await expect(page).toHaveURL(/\?empresa=twitch&remoto=1$/);
+  await page.goto(page.url());
+  await expect(page.getByRole("status")).toHaveText("2 vagas encontradas.");
+  await expect(page.getByLabel("Aceita remoto")).toBeChecked();
+});
+
 test("axe sem violações com o sistema em modo escuro e na largura de celular", async ({ page }) => {
   await page.emulateMedia({ colorScheme: "dark" });
   await page.goto("./");
