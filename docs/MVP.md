@@ -4,7 +4,7 @@
 
 **Resumo:** 10 de 10 aplicáveis atendidos
 
-**Finalizado:** sim. Todos os critérios aplicáveis atendem. Site no ar desde 16/11/2026: https://douglasabnovato.github.io/oxe-online/. A #20 (alertas do Dependabot) segue aberta para o responsável fechar.
+**Finalizado:** sim. Todos os critérios aplicáveis atendem. Site no ar desde 16/11/2026: https://douglasabnovato.github.io/oxe-online/. Em 18/11/2026, `curl` no site devolveu 200, com o aviso de estudo no ar.
 
 ## 1. Critérios: 10 de 10 aplicáveis atendidos
 
@@ -31,7 +31,7 @@ Saberemos quando o teste Playwright fizer esse caminho no CI e o link copiado (`
 
 ## 3. Fora do MVP
 
-Backend, candidatura e contas; as vagas são dados de exemplo. Ordenar por data (#12) e lint (#14) ficam para o próximo ciclo.
+Backend, candidatura e contas; as vagas são dados de exemplo. Ordenar por data (#12) é funcionalidade nova e não entra em N1 (fechada como não planejada em 18/11/2026).
 
 ## 4. Neste ciclo (15/11/2026)
 
@@ -40,6 +40,10 @@ Teste Playwright do fluxo principal com axe em 1280 px e no celular (sem tema es
 ## 5. Neste ciclo (16/11/2026)
 
 O responsável ligou o Pages e os alertas do Dependabot e mesclou o #18: o site está no ar. Aviso de projeto de estudo no topo da página (#19), com teste Vitest do texto e Playwright de "visível sem rolar" no celular e no desktop.
+
+## 6. Neste ciclo (18/11/2026)
+
+Manutenção, sem funcionalidade nova. ESLint com `react-hooks` e `jsx-a11y` no CI (`npm run lint`, sem avisos), da #14. MUI 7 → 9 com `@mui/material` e `@mui/icons-material` juntos, da #37 e da #21: lint, 12 testes Vitest, build e 10 testes Playwright verdes em 18/11/2026; `npm audit --omit=dev` com 0 vulnerabilidades. React 19 segue na #21.
 
 ## Histórico
 

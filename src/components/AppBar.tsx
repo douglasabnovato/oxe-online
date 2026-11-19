@@ -4,11 +4,14 @@ import Toolbar from "@mui/material/Toolbar";
 import { IconLogo } from "./static/icons/IconLogo";
 import "./AppBar.css";
 
+/* Endereço do início lido fora do JSX: o jsx-a11y não resolve import.meta dentro de uma prop */
+const INICIO = import.meta.env.BASE_URL;
+
 export default function AppBarComp() {
   return (
     <AppBar position="static" component="header">
       <Toolbar className="app-bar">
-        <a href={import.meta.env.BASE_URL} className="logo-link" aria-label="Oxe Online — início">
+        <a href={INICIO} className="logo-link" aria-label="Oxe Online — início">
           <IconLogo sx={{ height: 33, width: 205 }} aria-hidden="true" />
         </a>
       </Toolbar>

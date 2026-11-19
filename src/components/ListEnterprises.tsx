@@ -28,7 +28,7 @@ export default function ListEnterprises({ companies, saved, onToggle: toggle, on
 
       {companies.map((c) => (
         <Paper component="section" aria-labelledby={`company-${c.id}`} key={c.id} sx={{ p: { xs: 2, md: 3 }, mb: 3 }}>
-          <Stack direction="row" spacing={2} alignItems="flex-start">
+          <Stack direction="row" spacing={2} sx={{ alignItems: "flex-start" }}>
             <img src={c.logo} alt="" width="46" height="45" />
             <Box>
               <Typography variant="h5" component="h2" id={`company-${c.id}`}>{c.name}</Typography>
