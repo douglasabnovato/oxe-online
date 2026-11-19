@@ -8,14 +8,15 @@
   <img alt="oxe-online" title="#oxe-online" src="./.github/tela-5.jpg" >
 </p>  
 
-## Estado e próximos passos (ciclo de 16/11/2026)
+## Estado e próximos passos (ciclo de 18/11/2026)
 
 Projeto de estudo (N1). Critérios: 10 de 10 aplicáveis atendidos em 16/11/2026. Finalizado: sim. A `main` está protegida desde 10/11/2026 e só recebe mudanças por PR.
 
-**No ar:** https://douglasabnovato.github.io/oxe-online/ (`curl` devolveu 200 em 16/11/2026 às 11:17). O aviso de projeto de estudo na página (#19) entra no ar com o PR da sprint-19, quando o responsável mesclar.
+**No ar:** https://douglasabnovato.github.io/oxe-online/ (`curl` devolveu 200 em 18/11/2026, com o aviso de projeto de estudo no ar).
 
 **O que foi feito**
 
+- 18/11/2026: ESLint no CI (#14) e MUI 9 (#37), na sprint; entram no ar quando o responsável mesclar a sprint na `main`
 - 16/11/2026: site publicado no GitHub Pages pelo responsável (#18); aviso de projeto de estudo no topo da página (#19)
 - Ciclo de 15/11/2026 (#22, que entra no #18): filtro "Aceita remoto" com `?remoto=1` na URL (#13); teste Playwright do fluxo principal com axe em 1280 px e no celular (o app não tem tema escuro próprio); página sem `localStorage` segue funcionando; `npm audit fix` (vite 8.3.8, vitest 5.1.0); Dependabot semanal; arquivos antigos do CRA apagados
 - `main` protegida pelo ruleset `principal-protegida` (critério 10) e workflow único com publicação no Pages só em push na `main` (#17, 10/11/2026)
@@ -24,12 +25,9 @@ Projeto de estudo (N1). Critérios: 10 de 10 aplicáveis atendidos em 16/11/2026
 
 **O que queremos fazer**
 
-- [#11](https://github.com/douglasabnovato/oxe-online/issues/11) Publicar no GitHub Pages: no ar; falta o responsável fechar a issue e pôr o link no "About"
-- [#19](https://github.com/douglasabnovato/oxe-online/issues/19) Aviso de projeto de estudo: feito na sprint, entra na `main` com o PR da sprint-19
-- [#20](https://github.com/douglasabnovato/oxe-online/issues/20) Alertas do Dependabot: ligados em 16/11/2026; falta o responsável fechar a issue
-- [#12](https://github.com/douglasabnovato/oxe-online/issues/12) Ordenar vagas por data de publicação
-- [#14](https://github.com/douglasabnovato/oxe-online/issues/14) ESLint no CI
-- [#21](https://github.com/douglasabnovato/oxe-online/issues/21) Atualizar React para 19 e MUI para 9
+- [#14](https://github.com/douglasabnovato/oxe-online/issues/14) ESLint no CI: feito na sprint, entra na `main` com o PR da sprint
+- [#37](https://github.com/douglasabnovato/oxe-online/issues/37) Triagem dos PRs do Dependabot de versão maior: MUI 9 feito na sprint; os demais esperam o responsável
+- [#21](https://github.com/douglasabnovato/oxe-online/issues/21) Atualizar React para 19 (o MUI 9 já está na sprint)
 
 **Onde está a documentação**
 
